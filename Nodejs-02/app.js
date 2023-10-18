@@ -1,20 +1,23 @@
 const express = require("express");
 const app = express();
+const form = require("./routes/form")
 
-// Middlerwares
+// Middlewares
 
-//First Middlerware
-app.use((req, res, next) => {
+//First Middleware
+app.use((req, res, next) => { //Auth middlerware
     // console.log(req.url)
-    req.data = "ashraf ali"
-    console.log(req)
+    // console.log(req)
+    req.ashraf = "AnyThing"
     next()
 })
 
-//Second Middlerware
-app.use((req, res, next) => {
-    res.send(req.data)
-})
+//Second Middleware
+// app.use((req, res, next) => {
+//     res.send(req.ashraf)
+// })
+//Third Milddleware
+app.use('/form',form)
 
 
 
