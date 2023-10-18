@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const form = require("./routes/form")
+const bodyParser = require("body-parser")
 
 // Middlewares
-
+app.use(bodyParser.urlencoded({extended:false}))
 //First Middleware
 app.use((req, res, next) => { //Auth middlerware
     // console.log(req.url)
