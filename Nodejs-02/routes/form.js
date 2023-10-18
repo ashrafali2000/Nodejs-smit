@@ -1,27 +1,14 @@
 const express = require("express");
+const path = require("path")
 const router = express.Router();
+const formFile = path.join(process.cwd(), "views", "form.html");
 // /form/   (/form in appjs || / in the below)
 router.get("/", (req, res) => {
-res.send(`
-<h1>WellCome to Our Website</h1>
-    <div class ='myForm'>
-    <form action ='/submit' method ='POST'>
-    <lable for='firstName'>First_Name</lable>
-    <input type='text' name='firstName' id='firstName' required/><br><br>
-    <lable for='lastName'>Last_Name</lable>
-    <input type='text' name='lastName' id='lastName' required/><br><br>
-    <lable for='email'>Email</lable>
-    <input type='email' name='email' id = 'email' required/><br><br>
-    <lable for= 'password'>Password</lable>
-    <input type='password' name='password' id= 'password' required/><br><br>
-    <button> Submit </button>
-    </form>
-    </div>
-`)
+res.sendFile(formFile);
 })
 router.post("/submit", (req, res) => {
-    
 res.send(req.body)
+console.log(req.body)
 })
 
 module.exports = router;
