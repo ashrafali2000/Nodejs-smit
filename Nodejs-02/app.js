@@ -7,6 +7,7 @@ const home = require("./routes/home")
 const signinForm = require("./routes/signinForm")
 const features = require("./routes/features")
 const shopCollection = require("./routes/shopCollection")
+const products = require("./routes/products")
 const cssFileForm = path.join(process.cwd(),"public")
 
 // Middlewares
@@ -31,5 +32,6 @@ app.use("/signin",signinForm)
 app.use("/",home)
 app.use("/features", features)
 app.use("/shopCollection", shopCollection)
+app.use("/products",products)
 
 app.listen(3000)
