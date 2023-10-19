@@ -1,10 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 const app = express();
+const path = require("path")
 const form = require("./routes/signupForm")
 const home = require("./routes/home")
 const signinForm = require("./routes/signinForm")
-const path = require("path")
+const features = require("./routes/features")
 const cssFileForm = path.join(process.cwd(),"public")
 
 // Middlewares
@@ -27,5 +28,6 @@ app.use((req, res, next) => { //Auth middlerware
 app.use("/signup",form)
 app.use("/signin",signinForm)
 app.use("/",home)
+app.use("/features", features)
 
 app.listen(3000)
