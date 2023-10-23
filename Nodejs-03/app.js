@@ -614,8 +614,9 @@ const poroducts = [
 //   // res.send("Hello from middlerWare")
 // });
 // app.get("/products", poroducts);
-app.get("/prodcuts", (req, res) => {
+app.get("/prodcuts", (req, res, next) => {
   res.send(poroducts)
+  next()
 })
 
 // Controller
