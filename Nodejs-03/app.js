@@ -5,8 +5,10 @@ const port = 3000;
 
 
 // MidddleWare
-app.get("/index", (req, res) => {
-res.send("Hello from middlerWare")
+app.get("/index", (req, res, nex) => {
+    req.body = "hello body ";
+    nex()
+// res.send("Hello from middlerWare")
 })
 
 // Controller
