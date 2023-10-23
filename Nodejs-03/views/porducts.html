@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+<p id="myPara"></p>
+    <script>
+        let myPara = document.getElementById("myPara");
+      fetch("http://localhost:3000/prodcuts")
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+    </script>
+</body>
+</html>
