@@ -9,16 +9,16 @@
     <h1>Hello Product file</h1>
 <ul id="myPara"></ul>
     <script>
-        (function(){
-            let myPara = document.getElementById("myPara");
-            fetch("http://localhost:3000/prodcuts")
-            .then(res => res.json())
-            .then(res => res.map(p =>  myPara.innerHTML += `<li> ${p.title}</li>
-            <img src = ${p.images[0]} style= width:190px>
+        // (function(){
+        //     let myPara = document.getElementById("myPara");
+        //     fetch("http://localhost:3000/prodcuts")
+        //     .then(res => res.json())
+        //     .then(res => res.map(p =>  myPara.innerHTML += `<li> ${p.title}</li>
+        //     <img src = ${p.images[0]} style= width:190px>
             
-            `))
-            .catch(err => console.log(err))
-        })();
+        //     `))
+        //     .catch(err => console.log(err))
+        // })();
     </script>
 </body>
 </html>
