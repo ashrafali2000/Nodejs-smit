@@ -13,7 +13,10 @@
             let myPara = document.getElementById("myPara");
             fetch("http://localhost:3000/prodcuts")
             .then(res => res.json())
-            .then(res => `<li>${res.map(p =>  myPara.innerHTML += p.title)}</li>`)
+            .then(res => res.map(p =>  myPara.innerHTML += `<li> ${p.title}</li>
+            <img src = ${p.images[0]} style= width:190px>
+            
+            `))
             .catch(err => console.log(err))
         })();
     </script>
