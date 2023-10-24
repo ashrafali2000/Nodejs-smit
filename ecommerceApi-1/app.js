@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser")
 // const indexRoute = require("./routes/index");
 const product = require("./routes/products");
 const signUp = require("./routes/signUp");
@@ -7,6 +8,8 @@ const app = express();
 
 const port = 3000;
 
+app.use(bodyParser.urlencoded({extends:false}))
+app.use(bodyParser.json());
 
 // MidddleWare
 // app.use("/index", (req, res, nex) => {
@@ -40,7 +43,7 @@ app.use("/products", product);
 app.use("/users", user);
 
 // User created  MiddleWare
-app.use("/users", user);
+// app.use("/users", user);
 
 // SignUp MiddleWare
 app.use("/signup", signUp);
