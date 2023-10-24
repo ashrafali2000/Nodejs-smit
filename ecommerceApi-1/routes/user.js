@@ -8,7 +8,8 @@ router.get("/", (req, res) => {
 })
 
 router.post("/add", (req, res) => {
-   createUser(req.body.email, req.body.password);
+    const {firstName, lastName, email, password} = req.body;
+   createUser(firstName, lastName, email, password);
    console.log(req.body)
     res.send("SignUp sucessfully")
 })
