@@ -6,14 +6,14 @@
     <title>Products</title>
 </head>
 <body>
-<p id="myPara"></p>
-<h1>Hello Product file</h1>
+    <h1>Hello Product file</h1>
+<ul id="myPara"></ul>
     <script>
         (function(){
             let myPara = document.getElementById("myPara");
             fetch("http://localhost:3000/prodcuts")
             .then(res => res.json())
-            .then(res => res.map(p => myPara.innerHTML += `<p>${p.title} </p>`))
+            .then(res => `<li>${res.map(p =>  myPara.innerHTML += p.title)}</li>`)
             .catch(err => console.log(err))
         })();
     </script>
