@@ -7,12 +7,15 @@
 </head>
 <body>
 <p id="myPara"></p>
+<h1>Hello Product file</h1>
     <script>
-        let myPara = document.getElementById("myPara");
-      fetch("http://localhost:3000/prodcuts")
-      .then(res => res.json())
-      .then(res => myPara.innerHTML += res)
-      .catch(err => console.log(err))
+        (function(){
+            let myPara = document.getElementById("myPara");
+            fetch("http://localhost:3000/prodcuts")
+            .then(res => res.json())
+            .then(res => res.map(p => myPara.innerHTML += `<p>${p.title} </p>`))
+            .catch(err => console.log(err))
+        })();
     </script>
 </body>
 </html>
