@@ -16,4 +16,12 @@ const createUser = (firstName, lastName, email, password) => {
 
     })
 }
-module.exports = createUser
+
+const findUser = (email) => {
+    fs.readFile(user, "utf8", (err, userData) => {
+        let myData = JSON.parse(userData);
+        let {users} = myData;
+         return users.find(user => user.email === email)
+    })
+}
+module.exports = {createUser, findUser}
