@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser")
-// const indexRoute = require("./routes/index");
+const indexRoute = require("./routes/index");
 const product = require("./routes/products");
 const signUp = require("./routes/signUp");
 const user = require("./routes/user");
@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 // })
 
 // Controller
-// app.use("/", indexRoute);
+app.use("/", indexRoute);
 
 // Query
 // app.get("/search", (req, res) => {
