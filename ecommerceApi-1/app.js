@@ -3,13 +3,18 @@ const bodyParser = require("body-parser")
 const indexRoute = require("./routes/index");
 const product = require("./routes/products");
 const signUp = require("./routes/signUp");
+const signIn = require("./routes/signIn");
 const user = require("./routes/user");
 const app = express();
+const path = require("path");
+// const signInjs = ;
 
 const port = 3000;
 
 app.use(bodyParser.urlencoded({extends:false}))
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(process.cwd(), "public")))
 
 // MidddleWare
 // app.use("/index", (req, res, nex) => {
@@ -47,6 +52,9 @@ app.use("/users", user);
 
 // SignUp MiddleWare
 app.use("/signup", signUp);
+
+// SignIn MiddleWare
+app.use("/signin", signIn);
 
 app.listen(port, (req, res) => {
   console.log(`Server listen on Port ${port}`);
