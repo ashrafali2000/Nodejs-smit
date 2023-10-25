@@ -11,6 +11,6 @@ router.post("/add", (req, res) => {
     const {firstName, lastName, email, password} = req.body;
    createUser(firstName, lastName, email, password);
    console.log(req.body)
-    res.send("SignUp sucessfully")
+    res.status(200).send({status:200,message: "SignUp sucessfully"});
 })
 module.exports = router
