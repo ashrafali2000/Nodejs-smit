@@ -21,7 +21,9 @@ const findUser = (email) => {
     fs.readFile(user, "utf8", (err, userData) => {
         let myData = JSON.parse(userData);
         let {users} = myData;
-         return users.find(user => user.email === email)
+        console.log(users)
+         return users.find(usr => usr.email === email)
     })
 }
+
 module.exports = {createUser, findUser}

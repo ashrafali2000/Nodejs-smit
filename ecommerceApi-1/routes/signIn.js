@@ -9,15 +9,15 @@ router.get("/", (req, res) => {
     res.sendFile(signInFile)
 })
 
-router.post("/user",  (req, res) => {
+router.post("/",  (req, res) => {
     const {email} = req.body;
     const found = findUser(email);
-    console.log(email)
-    if(!found){
-        res.send("user not exist");
-    }
-//    console.log(req.body)
-   res.send("login sucessfully")
+
+        if(found){
+            res.send("login sucessfullyt");
+        }
+       res.send("user not exist")
+
 })
 
 module.exports = router
