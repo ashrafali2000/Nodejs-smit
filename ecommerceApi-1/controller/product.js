@@ -6,7 +6,7 @@ const addProduct = (data) => {
     fs.readFile(product, "utf8", (err, userData) => {
         let myData = JSON.parse(userData);
         let {products} = myData;
-        products.push(data)
+        products.push({id:products.length + 1, ...data})
         let newData = JSON.stringify({products})
         fs.writeFile(product, newData, (err) => {
             if(err) {
