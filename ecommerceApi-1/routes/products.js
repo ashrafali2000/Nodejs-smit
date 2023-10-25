@@ -1,18 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path")
-const products = require("../data/products.json");
-const addProduct = require("../controller/product");
+const allProducts = require("../data/products.json");
+const {addProduct, getDynamicProduct} = require("../controller/product");
 
 const productFile = path.join(process.cwd() ,"views","newProduct.html");
 
 router.get("/", (req, res) => {
-    res.send(products)
+    res.send(allProducts)
 })
 
 
 router.get("/add", (req, res) => {
     res.sendFile(productFile)
+})
+// Dynamic routing
+router.get("/:p", (req, res) => {
+getDynamicProduct()
+   res.send(req.params.p)
+
+    
 })
 
 router.post("/", (req, res) => {

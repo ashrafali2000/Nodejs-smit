@@ -16,4 +16,13 @@ const addProduct = (data) => {
 
     })
 }
-module.exports = addProduct
+
+const getDynamicProduct = (data) => {
+    fs.readFile(product, "utf8", (err, userData) => {
+        let myData = JSON.parse(userData);
+        let {products} = myData;
+        return products.map(p => p.title.includes(data));
+    })}
+
+
+module.exports = {addProduct, getDynamicProduct }
