@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
     res.send(users)
 })
 
-router.post("/add", (req, res) => {
+router.post("/", (req, res) => {
     const {firstName, lastName, email, password} = req.body;
    createUser(firstName, lastName, email, password);
    console.log(req.body)
