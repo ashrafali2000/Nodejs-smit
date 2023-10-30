@@ -1,29 +1,56 @@
 const path = require("path")
 const fs = require("fs");
-const user = path.join(process.cwd(),"data", "user.json");
+const userJsonFile = path.join(process.cwd(),"data", "user.json");
 
-const createUser = (firstName, lastName, email, password) => {
-    fs.readFile(user, "utf8", (err, userData) => {
-        let myData = JSON.parse(userData);
-        let {users} = myData;
-         users.push({firstName, lastName, email, password})
-        let newData = JSON.stringify({users: users})
-        fs.writeFile(user, newData, (err) => {
-            if(err) {
-                console.log(users);
+
+const readData = () => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(userJsonFile, "utf8", (err, userData) => {
+            if(err){
+                return reject(err);
             }
+            resolve(JSON.parse(userData.toString()));
         })
-
     })
 }
 
-const findUser = (email) => {
-    fs.readFile(user, "utf8", (err, userData) => {
-        let myData = JSON.parse(userData);
-        let {users} = myData;
-        console.log(users)
-         return users.find(usr => usr.email === email)
+const writeData = (data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(userJsonFile, JSON.stringify(data), (err)=>{
+        if(err){
+            return reject(err)
+        }
+        resolve();
     })
+  })
 }
 
-module.exports = {createUser, findUser}
+const createUsers = async (firstName, lastName, email, password) => {
+    try{
+        let { users } = await readData();
+        const found = users.find(u => u.email === email);
+        if(found){
+            return "user already exist";
+        }
+        else{
+            await writeData({users:[...users,{firstName,lastName,email,password}]})
+            return "user created sucessfully"
+        }
+
+    }catch(err){
+     throw err
+    }
+}
+
+const findUser = async (email) => {
+    try{
+        const {users} = await readData();
+        const found = users.find(usr => usr.email === email)
+        return found;
+    }catch(err){ 
+        throw err
+    }
+  
+}
+
+module.exports = {createUsers, findUser}

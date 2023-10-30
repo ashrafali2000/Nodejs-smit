@@ -9,12 +9,11 @@ router.get("/", (req, res) => {
     res.sendFile(signInFile)
 })
 
-router.post("/",  (req, res) => {
+router.post("/",  async (req, res) => {
     const {email} = req.body;
-    const found = findUser(email);
-
+    const found = await findUser(email);
         if(found){
-            res.send("login sucessfullyt");
+            res.send("login sucessfully");
         }
        res.send("user not exist")
 
