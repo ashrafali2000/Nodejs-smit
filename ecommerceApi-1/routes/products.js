@@ -15,9 +15,10 @@ router.get("/add", (req, res) => {
     res.sendFile(productFile)
 })
 // Dynamic routing
-router.get("/:p", (req, res) => {
-getDynamicProduct()
-   res.send(req.params.p)
+router.get("/:p",async (req, res) => {
+    const data = req.params.p;
+ const DynamicRoute = await getDynamicProduct(data)
+   res.send(DynamicRoute)
 
     
 })
