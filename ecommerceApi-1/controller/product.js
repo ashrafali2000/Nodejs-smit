@@ -1,14 +1,15 @@
 const path = require("path")
 const fs = require("fs");
-const product = path.join(process.cwd(),"data", "products.json");
+const e = require("express");
+const productJsonFile = path.join(process.cwd(),"data", "products.json");
 
 const addProduct = (data) => {
-    fs.readFile(product, "utf8", (err, userData) => {
-        let myData = JSON.parse(userData);
+    fs.readFile(productJsonFile, "utf8", (err, productData) => {
+        let myData = JSON.parse(productData);
         let {products} = myData;
         products.push({id:products.length + 1, ...data})
         let newData = JSON.stringify({products})
-        fs.writeFile(product, newData, (err) => {
+        fs.writeFile(productJsonFile, newData, (err) => {
             if(err) {
                 console.log(users);
             }
@@ -17,12 +18,26 @@ const addProduct = (data) => {
     })
 }
 
-const getDynamicProduct = (data) => {
-    fs.readFile(product, "utf8", (err, userData) => {
-        let myData = JSON.parse(userData);
-        let {products} = myData;
-        return products.map(p => p.title.includes(data));
-    })}
+const readData = () => {
+    return new Promise( (resolve, reject) => {
+        fs.readFile(productJsonFile, "utf8", (err, productData) => {
+            if(err){
+              return  reject(err)
+            }
+            resolve(JSON.parse(productData.toString()))
+        })
 
+    })
+    }
 
-module.exports = {addProduct, getDynamicProduct }
+    const findProduct = async (productName) => {
+     try{
+     const  { products } = await readData()
+     const newProducts = products.filter(p => p.title.toLowerCase().includes(productName))
+     return newProducts;
+     }catch(err){
+       throw err;
+     }
+    }
+
+module.exports = {addProduct, findProduct }

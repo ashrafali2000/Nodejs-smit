@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path")
 const allProducts = require("../data/products.json");
-const {addProduct, getDynamicProduct} = require("../controller/product");
+const {addProduct, findProduct} = require("../controller/product");
 
 const productFile = path.join(process.cwd() ,"views","newProduct.html");
 
@@ -14,13 +14,12 @@ router.get("/", (req, res) => {
 router.get("/add", (req, res) => {
     res.sendFile(productFile)
 })
-// Dynamic routing
-router.get("/:p",async (req, res) => {
-    const data = req.params.p;
- const DynamicRoute = await getDynamicProduct(data)
-   res.send(DynamicRoute)
 
-    
+// Dynamic routing
+router.get("/:p", async (req, res) => {
+    const searchProduct = req.params.p;
+ const dynamicProduct = await findProduct(searchProduct)
+   res.send(dynamicProduct)  
 })
 
 router.post("/", (req, res) => {
