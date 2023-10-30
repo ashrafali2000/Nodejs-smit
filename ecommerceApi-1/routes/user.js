@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const users = require("../data/user.json");
-const { createUser } = require("../models/auth");
+const { createUser } = require("../controller/auth");
 
 
 router.get("/", (req, res) => {

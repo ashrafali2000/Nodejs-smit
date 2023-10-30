@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const { findUser } = require("../controller/user");
+const { login } = require("../controller/auth");
+
 
 const signInFile = path.join(process.cwd() ,"views","signIn.html");
 
@@ -10,12 +11,15 @@ router.get("/", (req, res) => {
 })
 
 router.post("/",  async (req, res) => {
-    const {email} = req.body;
-    const found = await findUser(email);
-        if(found){
-            res.send("login sucessfully");
-        }
-       res.send("user not exist")
+    try{
+        const {email, password} = req.body;
+        console.log(email, password)
+        const response = await login(email, password);
+        res.send(response);
+
+    }catch(err){
+      res.send(err)
+    }
 
 })
 
