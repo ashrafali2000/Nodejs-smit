@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     console.log(req.body);
     res.status(200).send(user);
   } catch (err) {
-    res.send("some error occur");
+    res.status(400).send("Some thing went wrong")
   }
 });
 module.exports = router;
