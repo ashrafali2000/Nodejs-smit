@@ -1,13 +1,15 @@
 const path = require("path")
 const fs = require("fs");
 const e = require("express");
+const {uid} = require("uid/single")
 const productJsonFile = path.join(process.cwd(),"data", "products.json");
 
 const addProduct = (data) => {
     fs.readFile(productJsonFile, "utf8", (err, productData) => {
         let myData = JSON.parse(productData);
         let {products} = myData;
-        products.push({id:products.length + 1, ...data})
+        const productId = uid(16)
+        products.push({pId: productId , ...data})
         let newData = JSON.stringify({products})
         fs.writeFile(productJsonFile, newData, (err) => {
             if(err) {
