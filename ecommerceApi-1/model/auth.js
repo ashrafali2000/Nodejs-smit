@@ -2,7 +2,6 @@ const path = require("path")
 const fs = require("fs");
 const userJsonFile = path.join(process.cwd(),"data", "user.json");
 
-
 const readData = () => {
     return new Promise((resolve, reject) => {
         fs.readFile(userJsonFile, "utf8", (err, userData) => {
@@ -15,17 +14,18 @@ const readData = () => {
 }
 
 const writeData = (data) => {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(userJsonFile, JSON.stringify(data), (err)=>{
-        if(err){
-            return reject(err)
-        }
+    return new Promise((resolve, reject) => {
+        fs.writeFile(userJsonFile, JSON.stringify(data), (err)=>{
+            if(err){
+                return reject(err)
+            }
         resolve();
     })
-  })
+})
 }
 
-const createUsers = async (firstName, lastName, email, password) => {
+
+const createUsers = async (userId, firstName, lastName, email, password) => {
     try{
         let { users } = await readData();
         const found = users.find(u => u.email === email);
@@ -33,7 +33,7 @@ const createUsers = async (firstName, lastName, email, password) => {
             return "user already exist";
         }
         else{
-            await writeData({users:[...users,{firstName,lastName,email,password}]})
+            await writeData({users:[...users,{userId, firstName,lastName,email,password : password}]})
             return "user created sucessfully"
         }
 
