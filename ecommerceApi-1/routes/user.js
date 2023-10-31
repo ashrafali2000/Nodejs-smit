@@ -3,11 +3,12 @@ const router = express.Router();
 const users = require("../data/user.json");
 const { createUser } = require("../controller/auth");
 
-
+// get all user Api
 router.get("/", (req, res) => {
   res.send(users);
 });
 
+// user Create controller
 router.post("/", async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
