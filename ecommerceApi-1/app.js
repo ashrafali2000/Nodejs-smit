@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser")
-const { uid } = require ('uid');
 const indexRoute = require("./routes/index");
 const product = require("./routes/products");
 const signUp = require("./routes/signUp");
